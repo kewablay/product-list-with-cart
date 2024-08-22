@@ -1,6 +1,6 @@
 <section>
   <h3>product List</h3>
   @for(product of products$ | async; track product) {
-  <p>{{ product?.name }} - {{ product?.price }}</p>
+  <p>{{ product?.name }} - {{ product?.price }} <button (click)="addToCart(product, $index )">Add to cart</button></p>
   }
 </section>
