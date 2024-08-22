@@ -7,6 +7,7 @@ import { AppState } from '../../store/app.state';
 import { loadProducts } from '../../store/products/actions/products.actions';
 import { selectProducts } from '../../store/products/selectors/products.selectors';
 import { AsyncPipe } from '@angular/common';
+import { addToCart } from '../../store/cart/actions/cart.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -35,6 +36,13 @@ export class ProductListComponent {
     // Subscribe to products$ observable
     this.products$.subscribe((products) => {
       console.log('Products in oninit:', products);
+      localStorage.setItem('products', JSON.stringify(products));
     });
+  }
+
+  addToCart(product: any, $index: number) {
+    const cartItem = {...product, quantity: 1, id: $index};
+    console.log('Product added to cart: ', cartItem);
+    this.store.dispatch(addToCart({ cartItem }));
   }
 }
