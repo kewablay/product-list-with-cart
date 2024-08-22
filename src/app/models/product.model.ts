@@ -27,7 +27,14 @@ export interface Dessert extends Product {
 
 // to handle where products are displayed but has quantity
 export interface CartItem extends Product {
+  image: {
+    thumbnail: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
   quantity: number;
+  id: number;
 }
 
 // to handle where products are displayed but has quantity and image
