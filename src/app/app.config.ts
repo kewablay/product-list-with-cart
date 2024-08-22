@@ -8,6 +8,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { productsReducer } from './store/products/reducers/products.reducers';
 import { ProductsEffects } from './store/products/effects/products.effects';
 import { provideHttpClient } from '@angular/common/http';
+import { cartReducer } from './store/cart/reducers/cart.reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,10 +20,10 @@ export const appConfig: ApplicationConfig = {
       reducer: productsReducer,
     }),
     provideHttpClient(),
-    // provideState({
-    //   name: 'cart',
-    //   reducer: cartReducer,
-    // }),
+    provideState({
+      name: 'cart',
+      reducer: cartReducer,
+    }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
