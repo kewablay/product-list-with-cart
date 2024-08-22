@@ -1,1 +1,8 @@
-<p>cart works!</p>
+<section class="cart-container">
+    <h3>cart works!</h3>
+    @for(cartItem of cart$ | async; track cartItem) {
+    <p>{{ cartItem?.name }} - price: {{ cartItem?.price }} -- qty: x{{cartItem.quantity}} <button (click)="removeFromCart(cartItem)">delete item</button></p>
+    }@empty {
+        <p>Cart empty</p>
+    }
+</section>
