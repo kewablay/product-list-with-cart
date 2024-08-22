@@ -1,14 +1,14 @@
-// export interface Product {
-//   image: {
-//     thumbnail: string;
-//     mobile: string;
-//     tablet: string;
-//     desktop: string;
-//   };
-//   name: string;
-//   category: string;
-//   price: number;
-// }
+export interface Products {
+  image: {
+    thumbnail: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  name: string;
+  category: string;
+  price: number;
+}
 
 export interface Product {
   name: string;
