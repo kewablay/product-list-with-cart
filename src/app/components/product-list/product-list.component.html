@@ -1,11 +1,16 @@
-<section class="product-grid">
+<section >
   <!-- @for(product of products$ | async; track product) {
   <p>
     {{ product?.name }} - {{ product?.price }}
     <button (click)="addToCart(product, $index)">Add to cart</button>
   </p>
   } -->
-  @for(product of products$ | async; track product) {
-  <app-product-item [product]="product" />
-  }
+  <h1 class="title">Dessert</h1>
+  <div class=" product-grid">
+
+    @for(product of products$ | async; track product) {
+    <app-product-item [product]="product" />
+    }
+  </div>
+
 </section>
