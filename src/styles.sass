@@ -79,12 +79,25 @@ p
     justify-content: center
     align-items: center
 
+.btn 
+    padding: 1.2rem 1rem
+    border-radius: 20rem
+    border: 1px solid $clr-rose-500
+    font-weight: 600
+    background: $clr-red
+    font-size: $fs-200
+    color: white
+    text-align: center
+    width: 100%
+
+
 // main styling 
 body
     font-family: $ff-redhat
     padding: 0
     margin: 0
     box-sizing: border-box
+    background-color: $clr-rose-50
     // margin-inline: auto
 
 h1, h2, h3, h4, h5, h6 
@@ -94,3 +107,31 @@ h1, h2, h3, h4, h5, h6
 
 p 
   margin: 0 0 1rem
+
+
+
+@media (min-width: 480px) 
+    body
+        padding-inline: 2rem
+
+
+@media (min-width: 576px) 
+    body
+        padding-inline: 1.5rem
+        padding-top: 1.5rem
+    .product-grid
+        grid-template-columns: repeat(2, 1fr)
+        gap: 2rem
+
+
+@media (min-width: 992px) 
+    .product-grid
+        grid-template-columns: repeat(3, 1fr)
+
+       
+@media (min-width: 1200px) 
+    body
+        padding: 0
+        padding-top: 1.5rem
+        width: 100%
+        margin-inline: 0
