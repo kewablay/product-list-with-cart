@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 @font-face 
-    font-family: "Red Hat", sans-serif
+    font-family: "RedHat", sans-serif
     src: url("/assets/RedHatText-VariableFont_wght.ttf") format("truetype")
     
 
 
 // Font families
-$ff-redhat: "Red Hat", sans-serif
+$ff-redhat: "RedHat", sans-serif
 
 // Global colors 
 
@@ -23,9 +23,8 @@ $clr-green: #1EA575
 
 // Font sizes 
 
-$fs-50: 4px
-$fs-100: 8px
-$fs-150: 12px
+$fs-80: 8px
+$fs-100: 14px
 $fs-200: 16px
 $fs-300: 24px
 $fs-400: 32px
@@ -33,3 +32,65 @@ $fs-500: 40px
 $fs-900: 88px
 
 
+// utility classes 
+.title 
+    font-size: $fs-500
+    font-weight: bold !important
+    margin-bottom: 1.5rem
+
+.subtitle
+    font-size: $fs-300
+
+
+p 
+    font-size: $fs-200
+
+.text-sm 
+    font-size: $fs-100
+
+.text-light
+    color: $clr-rose-500
+
+.text-red-bold
+    color: $clr-red
+    font-weight: bold
+
+.image-fluid 
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+.product-grid
+    display: grid
+    // grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: 1fr
+    gap: 1rem
+
+.flex
+    display: flex
+
+.flex-between
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.flex-center 
+    display: flex
+    justify-content: center
+    align-items: center
+
+// main styling 
+body
+    font-family: $ff-redhat
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+    // margin-inline: auto
+
+h1, h2, h3, h4, h5, h6 
+  margin: 0 0 1rem
+  font-weight: 600
+
+
+p 
+  margin: 0 0 1rem
