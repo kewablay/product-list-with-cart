@@ -8,6 +8,7 @@ import { loadProducts } from '../../store/products/actions/products.actions';
 import { selectProducts } from '../../store/products/selectors/products.selectors';
 import { AsyncPipe } from '@angular/common';
 import { addToCart } from '../../store/cart/actions/cart.actions';
+import { LocalStorageService } from '../../services/localStorageService/local-storage.service';
 
 @Component({
   selector: 'app-product-list',
@@ -20,13 +21,16 @@ export class ProductListComponent {
   products$!: Observable<Products[]>;
   loading$!: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    private localStorageService: LocalStorageService
+  ) {
     console.log('Product list component created');
     // this.products$ = this.store.select((state) => state.products.products);
     this.products$ = this.store.select(selectProducts);
     this.store
       .select('products')
-      .subscribe((data) => console.log('data: ', data)); // ;
+      .subscribe((data) => this.localStorageService.setItem('products', data)); // ;
     // this.loading$ = this.store.select((state) => state.products.loading);
     console.log('Products: ', this.products$);
   }
@@ -41,7 +45,7 @@ export class ProductListComponent {
   }
 
   addToCart(product: any, $index: number) {
-    const cartItem = {...product, quantity: 1, id: $index};
+    const cartItem = { ...product, quantity: 1, id: $index };
     console.log('Product added to cart: ', cartItem);
     this.store.dispatch(addToCart({ cartItem }));
   }
