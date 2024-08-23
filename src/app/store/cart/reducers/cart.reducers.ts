@@ -42,6 +42,11 @@ const addItemToCart = (
   }
 };
 
+const clearCartItems = (state: CartState) => {
+  localStorageService.removeItem('cart');
+  return { ...state, cart: [] };
+};
+
 export const cartReducer = createReducer(
   initialState,
   on(addToCart, addItemToCart),
@@ -51,5 +56,5 @@ export const cartReducer = createReducer(
       (singleCartItem) => cartItem.id !== singleCartItem.id
     ),
   })),
-  on(clearCart, (state) => ({ ...state, cart: [] }))
+  on(clearCart, clearCartItems)
 );
