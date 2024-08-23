@@ -1,23 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
 import { CartItem } from '../../../models/product.model';
 import { addToCart, clearCart, removeFromCart } from '../actions/cart.actions';
+import { LocalStorageService } from '../../../services/localStorageService/local-storage.service';
 
 export interface CartState {
   cart: CartItem[];
 }
 
+const localStorageService = new LocalStorageService();
+
 export const initialState: CartState = {
-  cart: [],
+  cart: localStorageService.getItem('cart') || [],
 };
-
-// export const initialState: CartState = JSON.parse(
-//   localStorage.getItem('cart') ??
-//     JSON.stringify({
-//       cart: [],
-//     })
-// ) 
-
-
 
 const addItemToCart = (
   state: CartState,
