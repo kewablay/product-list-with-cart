@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Products } from '../../../models/product.model';
+import { Dessert } from '../../../models/product.model';
 import {
   loadProducts,
   loadProductsError,
@@ -8,7 +8,7 @@ import {
 import { LocalStorageService } from '../../../services/localStorageService/local-storage.service';
 
 export interface ProductsState {
-  products: Products[];
+  products: Dessert[];
   loading: boolean;
   error: string | null;
 }

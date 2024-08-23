@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Products } from '../../models/product.model';
-import { DataService } from '../../services/dataService/data.service';
+import { CartItem, Dessert } from '../../models/product.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { loadProducts } from '../../store/products/actions/products.actions';
@@ -18,7 +17,7 @@ import { LocalStorageService } from '../../services/localStorageService/local-st
   styleUrl: './product-list.component.sass',
 })
 export class ProductListComponent {
-  products$!: Observable<Products[]>;
+  products$!: Observable<Dessert[]>;
   loading$!: Observable<boolean>;
 
   constructor(
@@ -37,16 +36,14 @@ export class ProductListComponent {
 
   ngOnInit(): void {
     this.store.dispatch(loadProducts());
-    // Subscribe to products$ observable
+    // Set products to local storage
     this.products$.subscribe((products) => {
-      console.log('Products in oninit:', products);
       localStorage.setItem('products', JSON.stringify(products));
     });
   }
 
   addToCart(product: any, $index: number) {
-    const cartItem = { ...product, quantity: 1, id: $index };
-    console.log('Product added to cart: ', cartItem);
+    const cartItem: CartItem = { ...product, quantity: 1, id: $index };
     this.store.dispatch(addToCart({ cartItem }));
   }
 }
