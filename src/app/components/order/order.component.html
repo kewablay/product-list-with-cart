@@ -1,0 +1,9 @@
+<h3>order works!</h3>
+<div class="order"></div>
+@for(orderItem of order$ | async; track orderItem) {
+<p>{{ orderItem?.name }}</p>
+} @empty {
+<p>orders empty</p>
+}
+
+<button (click)="startNewOrder()">start new order</button>
