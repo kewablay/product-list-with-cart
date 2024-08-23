@@ -8,11 +8,12 @@ import { selectProducts } from '../../store/products/selectors/products.selector
 import { AsyncPipe } from '@angular/common';
 import { addToCart } from '../../store/cart/actions/cart.actions';
 import { LocalStorageService } from '../../services/localStorageService/local-storage.service';
+import { ProductItemComponent } from "../product-item/product-item.component";
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, ProductItemComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.sass',
 })
