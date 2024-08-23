@@ -7,11 +7,12 @@ import { AsyncPipe } from '@angular/common';
 import { selectCart } from '../../store/cart/selectors/cart.selectors';
 import { removeFromCart } from '../../store/cart/actions/cart.actions';
 import { placeOrder } from '../../store/order/actions/order.actions';
+import { CartItemComponent } from "../cart-item/cart-item.component";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, CartItemComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.sass',
 })

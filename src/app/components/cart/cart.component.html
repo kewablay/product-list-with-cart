@@ -1,6 +1,6 @@
 <section class="cart-container">
-  <h3>cart works!</h3>
-  @for(cartItem of cart$ | async; track cartItem) {
+  <h3 class="text-red-bold subtitle">Your Cart ({{ (cart$ | async)?.length }})</h3>
+  <!-- @for(cartItem of cart$ | async; track cartItem) {
   <p>
     {{ cartItem?.name }} - price: {{ cartItem?.price }} -- qty: x{{
       cartItem.quantity
@@ -9,7 +9,11 @@
   </p>
   }@empty {
   <p>Cart empty</p>
+  } -->
+
+  @for(cartItem of cart$ | async; track cartItem) {
+  <app-cart-item [cartItem]="cartItem" />
   }
 
-  <button (click)="placeOrder()">Confirm new Order</button>
+  <button (click)="placeOrder()" class="btn">Confirm new Order</button>
 </section>

@@ -1,1 +1,19 @@
-<p>base-list-item works!</p>
+<div class="base-list-item">
+  <ng-content select="[item-image]" />
+  <div class="body-content flex-between">
+    <div>
+      <!-- item name -->
+      <p>{{ Item.name }}</p>
+      <div class="price-and-qty">
+        <p class="text-red-bold">{{ Item.quantity }}x</p>
+        <p class="text-light">
+          {{ "@" }} {{ Item.price | currency : "USD" : "symbol" : "1.2-2" }}
+        </p>
+        <p class="text-light">
+          {{ totalPrice | currency : "USD" : "symbol" : "1.2-2" }}
+        </p>
+      </div>
+    </div>
+    <ng-content select="[item-action]" />
+  </div>
+</div>
