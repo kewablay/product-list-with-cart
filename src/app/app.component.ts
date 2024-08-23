@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { DataService } from './services/dataService/data.service';
 import { ProductListComponent } from "./components/product-list/product-list.component";
 import { CartComponent } from "./components/cart/cart.component";
+import { OrderComponent } from "./components/order/order.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ProductListComponent, CartComponent],
+  imports: [RouterOutlet, ProductListComponent, CartComponent, OrderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
 })
