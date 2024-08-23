@@ -11,6 +11,7 @@ export interface Dessert extends Product {
     tablet: string;
     desktop: string;
   };
+  category: string;
 }
 
 // to handle where products are displayed but has quantity
