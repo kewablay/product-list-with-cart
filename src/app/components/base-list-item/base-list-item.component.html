@@ -9,11 +9,10 @@
         <p class="text-light">
           {{ "@" }} {{ Item.price | currency : "USD" : "symbol" : "1.2-2" }}
         </p>
-        <p class="text-light">
-          {{ totalPrice | currency : "USD" : "symbol" : "1.2-2" }}
-        </p>
+        
+        <ng-content select="[item-total-price]" />
       </div>
     </div>
-    <ng-content select="[item-action]" />
+    <ng-content select="[item-action]" class="item-content" />
   </div>
 </div>
