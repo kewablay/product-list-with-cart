@@ -28,10 +28,11 @@ const addItemToCart = (
       cart: [...state.cart, cartItem],
     };
   } else {
-    // else increment the quantity of the item in cart
+    // else increment the quantity and total price of the item in cart
     const updatedItem = {
       ...state.cart[itemIndex],
       quantity: state.cart[itemIndex].quantity + 1,
+      itemTotalPrice: state.cart[itemIndex].itemTotalPrice + cartItem.price,
     };
     return {
       ...state,
