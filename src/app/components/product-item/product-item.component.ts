@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Dessert } from '../../models/product.model';
 import { CurrencyPipe } from '@angular/common';
 
@@ -10,6 +10,11 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './product-item.component.sass',
 })
 export class ProductItemComponent {
-@Input() product!: Dessert;
-  
+  @Output() addToCart = new EventEmitter<any>();
+  @Input() product!: Dessert;
+
+
+  handleAddToCart(product:Dessert) {
+    this.addToCart.emit(product);
+  }
 }
