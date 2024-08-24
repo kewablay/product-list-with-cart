@@ -1,5 +1,7 @@
 <section class="cart-container">
-  <h3 class="text-red-bold subtitle">Your Cart ({{ (cart$ | async)?.length }})</h3>
+  <h3 class="text-red-bold subtitle">
+    Your Cart ({{ (cart$ | async)?.length }})
+  </h3>
   <!-- @for(cartItem of cart$ | async; track cartItem) {
   <p>
     {{ cartItem?.name }} - price: {{ cartItem?.price }} -- qty: x{{
@@ -12,8 +14,15 @@
   } -->
 
   @for(cartItem of cart$ | async; track cartItem) {
-  <app-cart-item [cartItem]="cartItem" />
+  <app-cart-item
+    [cartItem]="cartItem"
+    (removeFromCart)="removeFromCart(cartItem)"
+  />
   }
 
   <button (click)="placeOrder()" class="btn">Confirm new Order</button>
+  <!-- order modal -->
+  <app-modal [isOpen]="isModalOpen" (closeModal)="handleCloseModal()">
+    <app-order></app-order>
+  </app-modal>
 </section>
