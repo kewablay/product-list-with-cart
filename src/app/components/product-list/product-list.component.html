@@ -1,4 +1,4 @@
-<section >
+<section>
   <!-- @for(product of products$ | async; track product) {
   <p>
     {{ product?.name }} - {{ product?.price }}
@@ -6,11 +6,12 @@
   </p>
   } -->
   <h1 class="title">Dessert</h1>
-  <div class=" product-grid">
-
+  <div class="product-grid">
     @for(product of products$ | async; track product) {
-    <app-product-item [product]="product" />
+    <app-product-item
+      [product]="product"
+      (addToCart)="addToCart(product, $event)"
+    />
     }
   </div>
-
 </section>
