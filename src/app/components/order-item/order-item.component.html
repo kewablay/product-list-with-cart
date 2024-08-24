@@ -1,8 +1,7 @@
-<app-base-list-item>
-  <ng-template item-image>
-    <img src="https://via.placeholder.com/100x100" />
-  </ng-template>
-  <ng-template item-action>
-    <p>price</p>
-  </ng-template>
+<app-base-list-item [Item]="orderItem">
+  <div class="order-image" item-image>
+    <!-- <img src="https://via.placeholder.com/70x70" /> -->
+    <img [src]="orderItem.image.mobile" class="image-fluid"/>
+  </div>
+  <p item-action class="text-semi-bold">{{ orderItem.itemTotalPrice | currency : "USD" : "symbol" : "1.2-2" }}</p>
 </app-base-list-item>
