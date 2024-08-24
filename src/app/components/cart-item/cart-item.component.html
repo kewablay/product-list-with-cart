@@ -1,6 +1,6 @@
 <app-base-list-item [Item]="cartItem">
   <!-- <ng-template> -->
-  <button item-action>
+  <button item-action (click)="handleRemoveCartItem(cartItem)">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="10"

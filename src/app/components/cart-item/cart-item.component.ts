@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BaseListItemComponent } from "../base-list-item/base-list-item.component";
 import { CartItem } from '../../models/product.model';
 
@@ -11,4 +11,9 @@ import { CartItem } from '../../models/product.model';
 })
 export class CartItemComponent {
   @Input() cartItem!: CartItem;
+  @Output() removeFromCart = new EventEmitter<CartItem>();
+
+  handleRemoveCartItem(cartItem: CartItem) {
+    this.removeFromCart.emit(cartItem);
+  }
 }
