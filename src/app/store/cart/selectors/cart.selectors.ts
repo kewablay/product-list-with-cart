@@ -6,3 +6,8 @@ export const selectCart = createSelector(
   (state: AppState) => state.cart,
   (cart: CartState) => cart.cart
 );
+
+export const selectCartTotal = createSelector(
+  (state: AppState) => state.cart,
+  (cart: CartState) => cart.total
+);
