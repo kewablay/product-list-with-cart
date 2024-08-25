@@ -25,9 +25,11 @@
   </div>
 
   <div class="order-body">
-    @for(orderItem of order$ | async; track orderItem) {
-    <app-order-item [orderItem]="orderItem" />
-    }
+    <div class="order-item-list scrollable">
+      @for(orderItem of order$ | async; track orderItem) {
+      <app-order-item [orderItem]="orderItem" />
+      }
+    </div>
     <div class="orderTotal flex-between">
       <p>Total Order:</p>
       <h3 class="subtitle">
