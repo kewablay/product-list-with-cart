@@ -6,9 +6,14 @@ import { AppState } from '../../store/app.state';
 import { loadProducts } from '../../store/products/actions/products.actions';
 import { selectProducts } from '../../store/products/selectors/products.selectors';
 import { AsyncPipe } from '@angular/common';
-import { addToCart } from '../../store/cart/actions/cart.actions';
+import {
+  addToCart,
+  decreaseItemQuantity,
+  removeFromCart,
+} from '../../store/cart/actions/cart.actions';
 import { LocalStorageService } from '../../services/localStorageService/local-storage.service';
 import { ProductItemComponent } from '../product-item/product-item.component';
+import { selectCart } from '../../store/cart/selectors/cart.selectors';
 
 @Component({
   selector: 'app-product-list',
@@ -19,6 +24,8 @@ import { ProductItemComponent } from '../product-item/product-item.component';
 })
 export class ProductListComponent {
   products$!: Observable<Dessert[]>;
+
+  isInCart: boolean = false;
   loading$!: Observable<boolean>;
 
   constructor(
@@ -43,8 +50,18 @@ export class ProductListComponent {
     });
   }
 
-  addToCart(product: any, $index: number) {
-    const cartItem: CartItem = { ...product, quantity: 1,itemTotalPrice: product.price, id: $index };
+  addToCart(product: Dessert, $index: number) {
+    const cartItem: CartItem = {
+      ...product,
+      quantity: 1,
+      itemTotalPrice: product.price,
+      id: $index,
+    };
     this.store.dispatch(addToCart({ cartItem }));
+  }
+
+  DecreaseQuantity(productName: string) {
+    // const cartItem: CartItem = { ...product, quantity: 1,itemTotalPrice: product.price, id: $index };
+    this.store.dispatch(decreaseItemQuantity({ productName }));
   }
 }
