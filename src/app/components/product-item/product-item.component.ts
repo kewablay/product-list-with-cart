@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { CartItem, Dessert } from '../../models/product.model';
 import { CurrencyPipe } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -22,20 +22,25 @@ export class ProductItemComponent {
   quantity: number = 0;
 
   constructor(private store: Store<AppState>) {
+    console.log('Product item component created');
     this.cart$ = this.store.select(selectCart);
-
-    this.cart$.subscribe((cart) => {
-      const itemInCart = cart.find((item) => item.name === this.product?.name);
-      if (itemInCart) {
-        this.isInCart = true;
-        this.quantity = itemInCart.quantity;
-      } else {
-        this.isInCart = false;
-        this.quantity = 0;
-      }
-    });
+    
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['product'] && this['product']) {
+      this.cart$.subscribe((cart) => {
+        const itemInCart = cart.find((item) => item.name === this.product.name);
+        if (itemInCart) {
+          this.isInCart = true;
+          this.quantity = itemInCart.quantity;
+        } else {
+          this.isInCart = false;
+          this.quantity = 0;
+        }
+      });
+    }
+  }
 
   handleAddToCart(product: Dessert) {
     this.addToCart.emit(product);
