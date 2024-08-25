@@ -1,7 +1,7 @@
 @if(isOpen) {
 <div class="modal-backdrop" (click)="handleCloseModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="close-modal-btn" (click)="handleCloseModal()">X</button>
+    <!-- <button class="close-modal-btn" (click)="handleCloseModal()">X</button> -->
     <ng-content></ng-content>
   </div>
 </div>

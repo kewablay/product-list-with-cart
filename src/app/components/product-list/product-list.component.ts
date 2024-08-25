@@ -8,7 +8,7 @@ import { selectProducts } from '../../store/products/selectors/products.selector
 import { AsyncPipe } from '@angular/common';
 import { addToCart } from '../../store/cart/actions/cart.actions';
 import { LocalStorageService } from '../../services/localStorageService/local-storage.service';
-import { ProductItemComponent } from "../product-item/product-item.component";
+import { ProductItemComponent } from '../product-item/product-item.component';
 
 @Component({
   selector: 'app-product-list',
@@ -44,7 +44,7 @@ export class ProductListComponent {
   }
 
   addToCart(product: any, $index: number) {
-    const cartItem: CartItem = { ...product, quantity: 1, id: $index };
+    const cartItem: CartItem = { ...product, quantity: 1,itemTotalPrice: product.price, id: $index };
     this.store.dispatch(addToCart({ cartItem }));
   }
 }

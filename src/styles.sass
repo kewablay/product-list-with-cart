@@ -54,6 +54,8 @@ p
 .text-red-bold
     color: $clr-red
     font-weight: bold
+.text-semi-bold
+    font-weight: 600
 
 .image-fluid 
     width: 100%
@@ -79,6 +81,12 @@ p
     justify-content: center
     align-items: center
 
+.order-image
+    width: 100px
+    height: 55px
+    overflow: hidden
+    border-radius: 8px
+
 .btn 
     padding: 1.2rem 1rem
     border-radius: 20rem
@@ -89,6 +97,32 @@ p
     color: white
     text-align: center
     width: 100%
+
+
+
+/* width */
+.scrollable::-webkit-scrollbar 
+  width: 5px
+  height: 3px
+  
+
+
+/* Track */
+.scrollable::-webkit-scrollbar-track 
+  background: $clr-rose-100
+  border-radius: 5px
+
+
+/* Handle */
+.scrollable::-webkit-scrollbar-thumb 
+  background: white
+  border-radius: 20px
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+
+
+/* Handle on hover */
+.scrollable::-webkit-scrollbar-thumb:hover 
+  background: $clr-rose-400
 
 
 // main styling 

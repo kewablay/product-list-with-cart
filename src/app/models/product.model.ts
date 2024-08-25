@@ -24,6 +24,7 @@ export interface CartItem extends Product {
   };
   quantity: number;
   id: number;
+  itemTotalPrice: number;
 }
 // to handle where products are displayed but has quantity and image
 export interface OrderItem extends CartItem {}
