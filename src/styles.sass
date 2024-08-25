@@ -12,6 +12,7 @@ $ff-redhat: "RedHat", sans-serif
 // Global colors 
 
 $clr-red: #C73B0F
+$clr-red-dark: #952C0B
 $clr-rose-900: #260F08
 $clr-rose-500: #87635A
 $clr-rose-400: #AD8A85
@@ -97,6 +98,10 @@ p
     color: white
     text-align: center
     width: 100%
+    transition: all .3s ease
+
+    &:hover
+        background: $clr-red-dark
 
 
 .scrollable
@@ -126,6 +131,10 @@ p
 /* Handle on hover */
 .scrollable::-webkit-scrollbar-thumb:hover 
   background: $clr-rose-400
+
+
+.no-scroll 
+  overflow: hidden
 
 
 // main styling 
