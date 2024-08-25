@@ -1,4 +1,4 @@
-<div class="product-item ">
+<div class="product-item">
   <div class="product-header">
     <div class="product-image">
       <img
@@ -8,7 +8,11 @@
       />
     </div>
     <div class="product-button flex-center">
-      <button class="add-to-cart flex-center" (click)="handleAddToCart(product)">
+      @if(!isInCart){
+      <button
+        class="add-to-cart flex-center"
+        (click)="handleAddToCart(product)"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="21"
@@ -32,12 +36,22 @@
         </svg>
         Add to Cart
       </button>
+
+      } @else {
+      <div class="flex-between add-to-cart">
+        <button (click)="handleDecreaseQuantity(product)">-</button>
+        <p>{{ quantity }}</p>
+        <button (click)="handleAddToCart(product)">+</button>
+      </div>
+      }
     </div>
   </div>
 
   <div class="product-body">
     <small class="text-sm text-light">{{ product.category }}</small>
     <h4>{{ product.name }}</h4>
-    <p class="text-red-bold">{{ product.price | currency:'USD':'symbol':'1.2-2' }}</p>
+    <p class="text-red-bold">
+      {{ product.price | currency : "USD" : "symbol" : "1.2-2" }}
+    </p>
   </div>
 </div>
