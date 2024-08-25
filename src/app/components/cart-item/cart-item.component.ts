@@ -12,9 +12,9 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class CartItemComponent {
   @Input() cartItem!: CartItem;
-  @Output() removeFromCart = new EventEmitter<CartItem>();
+  @Output() removeFromCart = new EventEmitter<string>();
 
-  handleRemoveCartItem(cartItem: CartItem) {
-    this.removeFromCart.emit(cartItem);
+  handleRemoveCartItem(productName: string) {
+    this.removeFromCart.emit(productName);
   }
 }
