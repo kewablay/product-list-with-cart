@@ -11,6 +11,7 @@
     <app-product-item
       [product]="product"
       (addToCart)="addToCart(product, $event)"
+      (decreaseQuantity)="DecreaseQuantity(product.name)"
     />
     }
   </div>
