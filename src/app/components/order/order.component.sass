@@ -4,7 +4,7 @@
     background: white
     padding: 2rem
     margin-top: auto
-    // width: 100%
+    
     position: absolute
     bottom: 0
     right: 0
@@ -36,7 +36,33 @@
         display: flex
         flex-direction: column
         gap: 1rem
+        border-radius: 10px
+
+        .order-item-list
+            max-height: 17rem
+            overflow-y: auto
+            padding-right: .5rem
 
         .orderTotal
             p, h3
                 margin-bottom: .1rem
+
+    
+
+@media (min-width: 768px) 
+    .order
+        // width: fit-content
+        width: 30rem
+        max-height: 38rem
+        position: static
+        margin-inline: auto
+        
+        border-radius: 20px
+        display: flex
+        flex-direction: column
+        gap: 1.5rem
+
+        .order-header
+            .header-content
+                .title
+                    width: 100%
