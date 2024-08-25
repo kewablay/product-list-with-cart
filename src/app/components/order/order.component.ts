@@ -3,34 +3,33 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { Observable } from 'rxjs';
 import { OrderItem } from '../../models/product.model';
-import { selectOrder } from '../../store/order/selectors/order.selectors';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { clearCart } from '../../store/cart/actions/cart.actions';
-import { CartItemComponent } from "../cart-item/cart-item.component";
-import { OrderItemComponent } from "../order-item/order-item.component";
+import { CartItemComponent } from '../cart-item/cart-item.component';
+import { OrderItemComponent } from '../order-item/order-item.component';
+import { selectCartTotal } from '../../store/cart/selectors/cart.selectors';
+import { selectOrder } from '../../store/order/selectors/order.selectors';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [AsyncPipe, CartItemComponent, OrderItemComponent],
+  imports: [AsyncPipe, CurrencyPipe, CartItemComponent, OrderItemComponent],
   templateUrl: './order.component.html',
   styleUrl: './order.component.sass',
 })
 export class OrderComponent {
   order$: Observable<OrderItem[]>;
-  @Output() closeModal = new EventEmitter<void>()
+  orderTotal$: Observable<number>;
+  @Output() closeModal = new EventEmitter<void>();
 
   constructor(private store: Store<AppState>) {
     this.order$ = this.store.select(selectOrder);
-
-    this.store
-      .select(selectOrder)
-      .subscribe((order) => console.log('order:', order));
+    this.orderTotal$ = this.store.select(selectCartTotal);
   }
 
   startNewOrder() {
-    // close order modal
     this.store.dispatch(clearCart());
+    // close order modal
     this.closeModal.emit();
   }
 }
