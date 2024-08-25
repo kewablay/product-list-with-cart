@@ -1,6 +1,7 @@
 @import '../../../styles.sass'
 
 .product-item
+    
     .product-header
         margin-bottom: 1rem
     
@@ -9,21 +10,62 @@
             height: 100%
             border-radius: 8px
             overflow: hidden
+            transition: all .2s ease-in-out
             height: 250px
+            border: 2px solid rgba(160, 160, 160, 0)
 
         .product-button
             margin-top: -1.3rem
             
             .add-to-cart
-                padding-inline: 1.5rem
+                // padding-inline: 1.5rem
+                width: 60%
+                height: 3rem
                 background: white
-                padding-block: .7rem
+                // padding-block: .7rem
                 gap: .5rem
                 border-radius: 20rem
                 border: 1px solid $clr-rose-500
                 font-weight: 600
                 background: white
                 font-size: $fs-100
+                transition: all .3s ease
+
+                &:hover
+                    border-color: $clr-red
+
+            .quantifier
+                background: $clr-red
+                border-radius: 20rem
+                color: white
+                width: 60%
+                height: 3rem
+                
+                .btn-inner
+                    width: 80%
+
+                    button
+                        background: $clr-red
+                        border: 1px solid $clr-rose-100
+                        width: 1.5rem
+                        height: 1.5rem
+                        border-radius: 50%
+                        transition: all .3s ease
+
+                        svg
+                            transition: all .1s ease
+
+                        &:hover
+                            background: white
+                            #icon
+                                fill: $clr-red
+                        &:active
+                            transform: scale(1.2)
+                            svg
+                                transform: scale(1.2)
+
+                p
+                    margin-bottom: 0
 
     .product-body
         display: flex

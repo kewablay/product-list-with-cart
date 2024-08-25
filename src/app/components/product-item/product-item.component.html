@@ -1,6 +1,11 @@
-<div class="product-item ">
+<div class="product-item">
   <div class="product-header">
-    <div class="product-image">
+    <div
+      class="product-image"
+      [style]="{
+        borderColor: isInCart ? '#C73B0F' : 'rgba(160, 160, 160, 0)'
+      }"
+    >
       <img
         class="image-fluid"
         [src]="product.image.desktop"
@@ -8,7 +13,11 @@
       />
     </div>
     <div class="product-button flex-center">
-      <button class="add-to-cart flex-center" (click)="handleAddToCart(product)">
+      @if(!isInCart){
+      <button
+        class="add-to-cart flex-center"
+        (click)="handleAddToCart(product)"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="21"
@@ -32,12 +41,48 @@
         </svg>
         Add to Cart
       </button>
+
+      } @else {
+      <div class="flex-center quantifier">
+        <div class="btn-inner flex-between">
+          <button class="flex-center" (click)="handleDecreaseQuantity(product)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="2"
+              fill="none"
+              viewBox="0 0 10 2"
+            >
+              <path id="icon" fill="#fff" d="M0 .375h10v1.25H0V.375Z" />
+            </svg>
+          </button>
+          <p>{{ quantity }}</p>
+          <button class="flex-center" (click)="handleAddToCart(product)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="10"
+              fill="none"
+              viewBox="0 0 10 10"
+            >
+              <path
+                id="icon"
+                fill="#fff"
+                d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      }
     </div>
   </div>
 
   <div class="product-body">
     <small class="text-sm text-light">{{ product.category }}</small>
     <h4>{{ product.name }}</h4>
-    <p class="text-red-bold">{{ product.price | currency:'USD':'symbol':'1.2-2' }}</p>
+    <p class="text-red-bold">
+      {{ product.price | currency : "USD" : "symbol" : "1.2-2" }}
+    </p>
   </div>
 </div>

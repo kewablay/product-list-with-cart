@@ -1,6 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { CartItem } from '../../../models/product.model';
-import { addToCart, clearCart, removeFromCart } from '../actions/cart.actions';
+import {
+  addToCart,
+  clearCart,
+  decreaseItemQuantity,
+  removeFromCart,
+} from '../actions/cart.actions';
 import { LocalStorageService } from '../../../services/localStorageService/local-storage.service';
 
 export interface CartState {
@@ -57,16 +62,61 @@ const removeItemFromCart = (
     (singleCartItem) => cartItem.id !== singleCartItem.id
   );
 
-  const itemTotalPrice = state.cart.find(
-    (singleCartItem) => cartItem.id === singleCartItem.id
-  )?.itemTotalPrice || 0;
+  const itemTotalPrice =
+    state.cart.find((singleCartItem) => cartItem.id === singleCartItem.id)
+      ?.itemTotalPrice || 0;
 
   return {
     ...state,
     cart: updatedCart,
-    total: state.total - itemTotalPrice,  // Update total
+    total: state.total - itemTotalPrice, // Update total
   };
-}
+};
+
+const decreaseCartItemQuantity = (
+  state: CartState,
+  {productName}: {productName: string}
+) => {
+  // Find the item in the cart
+
+  const item = state.cart.find((singleCartItem) => singleCartItem.name === productName)
+  console.log("Decreasing quantity of :", item)
+
+  // If the item is not found in the cart, return the current state
+  if (!item) {
+    return state;
+  }
+
+  // If the quantity is 1, remove the item from the cart
+  if (item.quantity === 1) {
+    const updatedCart = state.cart.filter(
+      (singleCartItem) => singleCartItem.name !== item.name
+    );
+
+    return {
+      ...state,
+      cart: updatedCart,
+      total: state.total - item.itemTotalPrice,
+    };
+  } else {
+    // Decrease the quantity and update the total price
+    const updatedItem = {
+      ...item,
+      quantity: item.quantity - 1,
+      itemTotalPrice: item.itemTotalPrice - item.price,
+    };
+
+    return {
+      ...state,
+      cart: state.cart.map((singleCartItem) =>
+        singleCartItem.name === productName ? updatedItem : singleCartItem
+      ),
+      total: state.total - item.price,
+    };
+  }
+};
+
+
 
 const clearCartItems = (state: CartState) => {
   localStorageService.removeItem('cart');
@@ -77,5 +127,6 @@ export const cartReducer = createReducer(
   initialState,
   on(addToCart, addItemToCart),
   on(removeFromCart, removeItemFromCart),
-  on(clearCart, clearCartItems)
+  on(clearCart, clearCartItems),
+  on(decreaseItemQuantity, decreaseCartItemQuantity), 
 );

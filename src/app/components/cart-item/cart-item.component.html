@@ -3,7 +3,7 @@
   <p class="text-light" item-total-price>
     {{ cartItem.itemTotalPrice | currency : "USD" : "symbol" : "1.2-2" }}
   </p>
-  <button item-action (click)="handleRemoveCartItem(cartItem)">
+  <button item-action (click)="handleRemoveCartItem(cartItem.name)">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="10"

@@ -10,7 +10,8 @@
     @for(product of products$ | async; track product) {
     <app-product-item
       [product]="product"
-      (addToCart)="addToCart(product, $event)"
+      (addToCart)="addToCart(product, $index)"
+      (decreaseQuantity)="DecreaseQuantity(product.name)"
     />
     }
   </div>
