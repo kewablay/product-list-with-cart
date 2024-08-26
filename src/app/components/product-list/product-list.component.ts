@@ -11,7 +11,6 @@ import {
   decreaseItemQuantity,
   removeFromCart,
 } from '../../store/cart/actions/cart.actions';
-import { LocalStorageService } from '../../services/localStorageService/local-storage.service';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { selectCart } from '../../store/cart/selectors/cart.selectors';
 
@@ -28,26 +27,14 @@ export class ProductListComponent {
   isInCart: boolean = false;
   loading$!: Observable<boolean>;
 
-  constructor(
-    private store: Store<AppState>,
-    private localStorageService: LocalStorageService
-  ) {
+  constructor(private store: Store<AppState>) {
     console.log('Product list component created');
     // this.products$ = this.store.select((state) => state.products.products);
     this.products$ = this.store.select(selectProducts);
-    this.store
-      .select('products')
-      .subscribe((data) => this.localStorageService.setItem('products', data)); // ;
-    // this.loading$ = this.store.select((state) => state.products.loading);
-    console.log('Products: ', this.products$);
   }
 
   ngOnInit(): void {
     this.store.dispatch(loadProducts());
-    // Set products to local storage
-    this.products$.subscribe((products) => {
-      localStorage.setItem('products', JSON.stringify(products));
-    });
   }
 
   addToCart(product: Dessert, $index: number) {

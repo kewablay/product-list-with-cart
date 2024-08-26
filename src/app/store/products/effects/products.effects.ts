@@ -4,10 +4,15 @@ import { DataService } from '../../../services/dataService/data.service';
 import { catchError, map, of, switchMap } from 'rxjs';
 import * as ProductsActions from '../actions/products.actions';
 import { Dessert } from '../../../models/product.model';
+import { LocalStorageService } from '../../../services/localStorageService/local-storage.service';
 
 @Injectable()
 export class ProductsEffects {
-  constructor(private actions$: Actions, private dataService: DataService) {}
+  constructor(
+    private actions$: Actions,
+    private dataService: DataService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
@@ -15,6 +20,7 @@ export class ProductsEffects {
       switchMap(() =>
         this.dataService.getProducts().pipe(
           map((products: Dessert[]) => {
+            this.localStorageService.setItem('products', products);
             return ProductsActions.loadProductsSuccess({ products });
           }),
           catchError((error) =>

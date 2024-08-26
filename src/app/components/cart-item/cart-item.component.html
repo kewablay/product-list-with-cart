@@ -1,6 +1,6 @@
 <app-base-list-item [Item]="cartItem">
   <!-- <ng-template> -->
-  <p class="text-light" item-total-price>
+  <p class="text-light text-elipses" item-total-price>
     {{ cartItem.itemTotalPrice | currency : "USD" : "symbol" : "1.2-2" }}
   </p>
   <button item-action (click)="handleRemoveCartItem(cartItem.name)">
