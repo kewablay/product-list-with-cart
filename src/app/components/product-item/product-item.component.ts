@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { CartItem, Dessert } from '../../models/product.model';
 import { CurrencyPipe } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -24,7 +30,6 @@ export class ProductItemComponent {
   constructor(private store: Store<AppState>) {
     console.log('Product item component created');
     this.cart$ = this.store.select(selectCart);
-    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
