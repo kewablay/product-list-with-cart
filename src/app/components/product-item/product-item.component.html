@@ -6,6 +6,7 @@
         borderColor: isInCart ? '#C73B0F' : 'rgba(160, 160, 160, 0)'
       }"
     >
+      @defer {
       <picture>
         <source media="(min-width: 768px)" [srcset]="product.image.tablet" />
         <source media="(min-width: 1024px)" [srcset]="product.image.desktop" />
@@ -15,6 +16,9 @@
           [alt]="product.name"
         />
       </picture>
+      } @placeholder(minimum 500ms)  {
+      <img class="loading-img image-fluid" alt="loading..." [src]="product.image.thumbnail" />
+      }
     </div>
     <div class="product-button flex-center">
       @if(!isInCart){
